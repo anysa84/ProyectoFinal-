@@ -8,9 +8,9 @@ const url = "mongodb+srv://Anahi:GZ3XzN7Lf1ndWX4t@intro.tuyod.mongodb.net/?retry
 const app = express () 
 
 //otra funcion//
-const dotenv = require('dotenv').config ()
+//const dotenv = require('dotenv').config()
 
-console.log (process.env.DATABASE_URL)
+//console.log (process.env.DATABASE_URL)
 
 //EL ORGANIZADOR DE LA DATA
 app.use(express.json())
