@@ -1,0 +1,126 @@
+
+.protest-guerrilla-regular {
+    font-family: "Protest Guerrilla", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  .sofadi-one-regular {
+    font-family: "Sofadi One", system-ui;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+ 
+  
+  .bungee-inline-regular {
+    font-family: "Bungee Inline", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+   
+    
+  }
+  
+form {
+    font: "Bungee Inline", sans-serif;
+    display: flex;
+    row-gap: 8px;
+    font-weight: 400; 
+    color: hwb(0 100% 0%);
+    align-items: center; 
+    justify-content: center; 
+    flex: content;
+    margin-top: 50px;
+    flex-direction: column;
+
+    
+}
+
+
+body{
+    display: flex;
+    height: 100vh;
+    margin: 0;
+    background-color: #b525e0;
+    font-family: "Bungee Inline", sans-serif;
+    align-items: center; 
+    justify-content: center; 
+   
+    flex-direction: column ;
+}
+
+
+    
+
+   
+
+
+
+.Titulo{
+  font-family: "Bungee Inline", sans-serif;
+  font-style: normal;
+  color: rgb(255, 255, 255);
+  font-size: 30px;
+  animation: bounce 2s infinite alternate;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-content: center;
+
+     }
+
+input[type="text"] {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  
+}
+
+
+
+  
+
+input[type="password"] {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+input[type="submit"] {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  
+  
+}
+
+
+
+
+a{
+  display:flex;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: rgb(215, 56, 236);
+
+
+
+}
+
+.VOLVER{
+  display:flex; 
+  border: 1px solid hsl(0, 33%, 92%);
+  border-radius: 5px;
+  background-color: rgb(215, 56, 236);
+  margin-left: 50%;
+  width: 80px;
+  height: 40px;
+  justify-content: center;
+  flex: auto;
+  align-items:center;
+}    
