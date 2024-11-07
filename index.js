@@ -8,7 +8,7 @@ const url = "mongodb+srv://Anahi:GZ3XzN7Lf1ndWX4t@intro.tuyod.mongodb.net/?retry
 const app = express () 
 
 //otra funcion//
-const dotenv = recuire('dotenv').config ()
+const dotenv = require('dotenv').config ()
 
 console.log (process.env.DATABASE_URL)
 
