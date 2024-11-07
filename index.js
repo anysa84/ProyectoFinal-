@@ -17,7 +17,7 @@ app.use(express.json())
 
 
 const path = require("path");
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "Public")));
 
 //EL ORGANIZADOR DE LAS RUTAS
 app.use('/', router)
