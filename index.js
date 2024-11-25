@@ -1,38 +1,82 @@
-// enrutamiento//
 
 
-const express = require('express')
-const mongoose = require('mongoose')
-const router = require('./Rutas/index')
-const url = "mongodb+srv://Anahi:GZ3XzN7Lf1ndWX4t@intro.tuyod.mongodb.net/?retryWrites=true&w=majority&appName=intro"
-const app = express () 
 
-//otra funcion//
-//const dotenv = require('dotenv').config()
+const express = require("express");
+const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
+const cors = require("cors");
+const miURL ="mongodb+srv://magnus87:root1234@intro.tuyod.mongodb.net/canciones?retryWrites=true&w=majority&appName=intro";
+//mongodb+srv://Anahi:<db_password>@intro.tuyod.mongodb.net/?retryWrites=true&w=majority&appName=intro
+//mongodb+srv://<username>:<password>@cluster0.mongodb.net/canciones?retryWrites=true&w=majority
 
-//console.log (process.env.DATABASE_URL)
+const app = express();
+const PORT = 3001;
 
-//EL ORGANIZADOR DE LA DATA
-app.use(express.json())
+// Middleware
+app.use(cors());
+app.use(bodyParser.json());
 
+// Conectar a MongoDB
 
-const path = require("path");
-app.use(express.static(path.join(__dirname, "Public")));
+mongoose.connect(miURL, {
 
-//EL ORGANIZADOR DE LAS RUTAS
-app.use('/', router)
+  //useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+.then(() => console.log("Conectado a MongoDB Atlas"))
+.catch((error) => console.error("Error al conectar con MongoDB Atlas:", error));
 
-const connectToMongo = async ()=>{
-  try{
-   await mongoose.connect(url)
-   //FUNCION PARA LEVANTAR NUESTRO SERVIDOR
-    app.listen(3000, () => {
-      console.log("Servidor escuchando en puerto 3000 y DB conectada");
-    });
-    }catch(error){
-    //SI FALLA CAE ACA
-    console.log(error)
-  }  
-}
+// Esquema de Canciones
+const songSchema = new mongoose.Schema({
 
-connectToMongo()
+  album: String,
+  year: Number,
+  coverUrl: String,
+  youtubeUrl: String,
+});
+
+const Song = mongoose.model("Song", songSchema);
+
+// Rutas
+app.get("/songs", async (req, res) => {
+  const songs = await Song.find();
+  res.json(songs);
+});
+
+app.post("/songs", async (req, res) => {
+  const newSong = new Song(req.body);
+  await newSong.save();
+  res.json(newSong);
+});
+
+app.delete("/songs/:id", async (req, res) => {
+  await Song.findByIdAndDelete(req.params.id);
+  res.json({ message: "Canción eliminada" });
+});
+
+// Modelo de usuario
+const userSchema = new mongoose.Schema({
+    nombre: String,
+    apellido: String,
+    apodo: String,
+    email: String,
+    password: String,
+});
+
+const user = mongoose.model('user', userSchema);
+
+// Ruta para registrar usuarios
+app.post('/register', async (req, res) => {
+    try {
+        const { nombre, apellido, apodo, email, password } = req.body;
+        const user = new user({ nombre, apellido, apodo, email, password });
+        await user.save();
+        res.status(201).send('Usuario registrado con éxito');
+    } catch (error) {
+        res.status(500).send('Error al registrar el usuario');
+    }
+});
+
+app.listen(PORT, () => {
+  console.log(`Servidor corriendo en http://localhost:${PORT}`);
+});
