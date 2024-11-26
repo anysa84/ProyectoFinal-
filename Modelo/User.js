@@ -1,8 +1,10 @@
 // revisar mongo o node a donde este residiuendo//
 const { Model, DataTypes } = require('express');
-const mongoose = require(´mongoose´); // ruta 
+const mongoose = require( "mongodb+srv://Anahi:GZ3XzN7Lf1ndWX4t@intro.tuyod.mongodb.net/?retryWrites=true&w=majority&appName=intro"
+); // ruta 
 const router= requise ('./router/index.js')
-const url = mongoose {}
+//const url = mongoose {}
+const url = "mongodb+srv://Anahi:GZ3XzN7Lf1ndWX4t@intro.tuyod.mongodb.net/?retryWrites=true&w=majority&appName=intro"
 
 User.init({
     nombre: {
