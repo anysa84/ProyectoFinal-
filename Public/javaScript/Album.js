@@ -1,31 +1,53 @@
-document.getElementById('addSongButton').addEventListener('click', function() {
-    const songInput = document.getElementById('songInput');
-    const songURL = songInput.value.trim();
+const form = document.getElementById("songForm");
+const tableBody = document.getElementById("songsTable").querySelector("tbody");
 
-    if (songURL) {
-        const listItem = document.createElement('li');
-        listItem.style.marginBottom = '10px'; // Añade margen automáticamente
-        
-        const songLink = document.createElement('a');
-        songLink.href = songURL;
-        songLink.target = '_blank'; // Abre en una nueva pestaña
-        songLink.rel = 'noopener noreferrer';
-        songLink.textContent = songURL;
-        songLink.style.marginRight = '10px'; // Espacio entre el enlace y el botón
-        
-        const deleteButton = document.createElement('button');
-        deleteButton.textContent = 'Eliminar';
-        deleteButton.addEventListener('click', function() {
-            listItem.remove();
-        });
+// Cargar canciones
+async function loadSongs() {
+  const response = await fetch("http://localhost:3001/songs");
+  const songs = await response.json();
+  tableBody.innerHTML = "";
+  songs.forEach((song) => {
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td>${song.album}</td>
+      <td>${song.year}</td>
+      <td><a href="${song.coverUrl}" target="_blank">Ver</a></td>
+      <td><a href="${song.youtubeUrl}" target="_blank">Ver</a></td>
+      <td><button onclick="deleteSong('${song._id}')">Eliminar</button></td>
+    `;
+    tableBody.appendChild(row);
+  });
+}
 
-        listItem.appendChild(songLink);
-        listItem.appendChild(deleteButton);
-        document.getElementById('musicList').appendChild(listItem);
-        songInput.value = ''; // Limpia el campo de entrada
-    } else {
-        alert('Por favor, introduce una URL válida.');
-    }
+// Guardar canción
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const formData = new FormData(form);
+  const song = {};
+  formData.forEach((value, key) => {
+    song[key] = value;
+  });
+
+  try {
+     await fetch("http://localhost:3001/songs", {
+     method: "POST", 
+     headers: { "Content-Type": "application/json" }, 
+     body: JSON.stringify(song), 
+    }); 
+    
+    form.reset(); 
+    loadSongs(); } catch (error) { 
+    console.error('Error al guardar la canción:', error); 
+  } 
 });
 
 
+
+// Eliminar canción
+async function deleteSong(id) {
+  await fetch(`http://localhost:3001/songs/${id}`, { method: "DELETE" });
+  loadSongs();
+}
+
+// Inicializar
+loadSongs();

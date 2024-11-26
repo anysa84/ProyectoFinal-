@@ -111,7 +111,6 @@ h2 {
 
 button {
 
-
   padding: 10px;
   font-size: 16px;
   justify-content: center;
@@ -221,7 +220,7 @@ button {
    margin-bottom: 15px;
    justify-items: center;
    row-gap: 50px;
-   color: rgb(0, 10, 10);
+   color: rgb(0, 0, 0);
    height: 40px;
 
    margin-left: 20px;
@@ -277,8 +276,46 @@ button {
   flex-wrap: wrap;
   border-bottom: rgb(240, 230, 230);
 
+}
 
 
 
+
+
+
+
+.VOLVER{
+  display:flex; 
+  border: 1px solid hsl(0, 33%, 92%);
+  border-radius: 5px;
+  background-color: rgb(215, 56, 236);
+  margin-left: 50%;
+  width: 80px;
+  height: 40px;
+  justify-content: center;
+  flex: auto;
+  align-items:center;
+}    
+
+
+ul {
+  color: black;
+  justify-content: b;
 
 }
+
+
+/* Estilos de la lista */ 
+#musicList { 
+
+   padding: 0;
+    margin: 20px 0;
+   } 
+   #musicList li 
+   { padding: 15px; 
+    margin: 10px 0; 
+
+    border: 1px solid hsl(0, 23%, 97%); border-radius: 4px; 
+    text-align: left;
+ 
+    } 
