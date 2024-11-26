@@ -5,7 +5,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const path = require('path');
+const path = require('/Public');
 const miURL ="mongodb+srv://magnus87:root1234@intro.tuyod.mongodb.net/canciones?retryWrites=true&w=majority&appName=intro";
 //mongodb+srv://Anahi:<db_password>@intro.tuyod.mongodb.net/?retryWrites=true&w=majority&appName=intro
 //mongodb+srv://<username>:<password>@cluster0.mongodb.net/canciones?retryWrites=true&w=majority
@@ -17,12 +17,12 @@ const PORT = 3001;
 
 
 // Servir archivos estáticos desde la carpeta "public"
-app.use(express.static(path.join(__dirname, 'public')));
+/*app.use(express.static(path.join(__dirname, 'public')));
 
 // Configurar la ruta para la página principal
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
+});*/
 
 
 // Middleware
